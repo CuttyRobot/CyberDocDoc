@@ -10,17 +10,18 @@ token = "token"
 bot = async_telebot.AsyncTeleBot(token)
 
 
-@bot.message_handlers(commands=["start"])
+@bot.message_handler(commands=["start"])
 async def start(message):
     await bot.send_message(message.chat.id, f"Hello, {message.chat.id}")
 
 
-@app.get("/")
-async def root():
+@app.post("/")
+async def rocker():
     return "ok"
 
+
 @app.post("/message")
-async def root(request: fastapi.requests):
+async def root(request: fastapi.Response):
     print('Message')
     return {"text": request}
 
