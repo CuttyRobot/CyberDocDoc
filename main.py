@@ -4,26 +4,22 @@ from fastapi import FastAPI
 from telebot import async_telebot
 import uvicorn
 import aiohttp
+
+
 app = FastAPI()
 
 token = "token"
 bot = async_telebot.AsyncTeleBot(token)
-
-
-@bot.message_handler(commands=["start"])
-async def start(message):
-    await bot.send_message(message.chat.id, f"Hello, {message.chat.id}")
-
 
 @app.post("/")
 async def rocker():
     return "ok"
 
 
-@app.post("/message")
-async def root(request: fastapi.Response):
+@app.post("/message/{text}")
+async def root(text: str):
     print('Message')
-    return {"text": request}
+    return {"text": text}
 
 
 @app.get("/hello/{name}")
@@ -32,5 +28,5 @@ async def say_hello(name: str):
 
 
 if __name__ == "__main__":
-    bot.set_webhook()
     uvicorn.run(app, host='localhost', port=8000)
+    
