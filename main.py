@@ -9,6 +9,7 @@ import json
 
 app = FastAPI()
 
+
 project_url = "t.me/CyberDoctorBot"
 personal_url = "test2.wwestern-gate.online/message"
 token = "6496231521:AAEoxoPKL2PctD2NEfF2GDtBoKubQWvFKcE"
